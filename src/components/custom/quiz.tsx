@@ -68,10 +68,12 @@ export default function QuizComponent({ presentationId }: { presentationId: stri
           <CardTitle>Quiz Complete!</CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-2xl font-bold text-center">
+          <p className="text-2xl font-bold">
             {score === 1 ? "Correct!" : "Incorrect!"}
           </p>
-            {score === 0 ? ` The correct answer was: ${question?.options[question.answer]}` : null}
+            {score === 0 ? `The correct answer was: `: null}
+            <br/>
+            {score === 0 ? `${question?.options[question.answer]}` : null}
         </CardContent>
         <CardFooter className="flex justify-center">
           <Button onClick={clearState}>Try Again</Button>

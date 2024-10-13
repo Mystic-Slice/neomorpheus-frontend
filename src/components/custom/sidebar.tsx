@@ -31,11 +31,12 @@ export default function Sidebar() {
   }, [user])
 
   return (
-    <div className="w-64 bg-white border-r">
-      <div className="p-4">
+    <div className="w-64 h-screen bg-white border-r">
+      <div className="p-4 w-full justify-center flex">
         <HomeButton/>
       </div>
-      <ScrollArea className="h-[calc(100vh-150px)] ml-1 mr-1">
+      <p className="text-lg font-semibold p-4 w-full text-center">Your Past Learnings</p>
+      <ScrollArea className="h-[calc(100vh-150px)] ml-2 mr-1">
         {userHistory.map((item, index) => (
           <Button key={index} className={`w-60 mb-2 ${isCurrent(item.courseId) ? "bg-blue-400": ""}`} onClick={() => router.push(`/learn/${item.courseId}`)}>
             <p className="text-sm">{item.title}</p>
@@ -43,7 +44,7 @@ export default function Sidebar() {
         ))}
       </ScrollArea>
 
-      <div className="p-4 flex justify-center">
+      <div className="fixed bottom-0 ml-16 p-4 flex justify-center">
         <Button onClick={logout}>
           Logout
         </Button>
