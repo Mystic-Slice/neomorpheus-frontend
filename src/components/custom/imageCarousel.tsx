@@ -27,7 +27,7 @@ export default function ImageCarousel({ items }: { items: CarouselItemType[] }) 
                       className="w-[300px] h-[300px] self-center"
                     />
                     <audio controls src={item.audio} className="self-center"/>
-                    <p className="text-center mt-2 text-justify">{item.content}</p>
+                    <p className="mt-2 text-justify">{item.content}</p>
                   </div>
                 </CardContent>
               </Card>
