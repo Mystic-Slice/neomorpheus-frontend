@@ -1,4 +1,5 @@
-# NeoMorpheus: From Novice to Expert: Cybersecurity for All
+# NeoMorpheus
+### From Novice to Expert: Cybersecurity for All
 
 An educational tool that helps users learn about cybersecurity concepts and practices. The tool is designed to be interactive and engaging, with a focus on gamification and storytelling. Users can learn about different cybersecurity topics through a series of challenges and quizzes. For more advanced users, deeper dives into subjects using research papers as the primary source of information are available. The tool is designed to be accessible to users of all levels, from novices to experts.
 
