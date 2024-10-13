@@ -52,7 +52,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 
     // Actual implementation
     const response = await fetch(
-        `${process.env.SERVER_URL}/api/recommended-prompts?username=${user.username}`,
+        `${process.env.SERVER_URL}/api/recommended-prompts?username=${user.email}`,
         {
             method: "GET",
             headers: {
@@ -62,5 +62,8 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
     )
     const data = await response.json()
 
-    res.status(response.status).json(data)
+    const recos: any = []
+    Object.entries(data.recommendations).forEach(([title, description]) => {recos.push({title, description})})
+
+    res.status(response.status).json({success: true, data: recos})
 }

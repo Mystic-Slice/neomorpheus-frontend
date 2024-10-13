@@ -36,6 +36,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
     })
     if(response.status === 201) {
         const data = await response.json()
+        console.log("here")
         res.status(response.status).json({ success: true, user: { email } })
         return
     }
