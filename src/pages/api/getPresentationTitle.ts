@@ -2,29 +2,25 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {
-    const { user, prompt } = req.body
+    const { presentationId } = req.body
 
     const response = await fetch(
-        `${process.env.SERVER_URL}/api/start-presentation-generation`,
+        `${process.env.SERVER_URL}/api/get-course-title?courseId=${presentationId}`,
         {
-            method: "POST",
+            method: "GET",
             headers: {
                 'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ 
-                input: prompt,
-                username: user.email
-            })
+            }
         }
     )
 
     const data = await response.json()
     console.log(data)
 
-    if (response.status === 202) {
+    if (response.status === 200) {
         res.status(200).json({
             success: true,
-            presentationId: data.courseId
+            title: data.title
         })
     }
 

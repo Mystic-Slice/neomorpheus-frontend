@@ -16,6 +16,6 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
         res.status(200).json({success: true, slide: data})
     }
 
-    res.status(response.status).json({ success: false, message: "This shouldnt have happened. Ashwath f'ed up." })
+    res.status(response.status).json({ success: false, message: "This shouldnt have happened." })
 }
 

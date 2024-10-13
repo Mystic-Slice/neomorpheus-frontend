@@ -14,7 +14,6 @@ export default function Sidebar() {
   const [userHistory, setUserHistory] = useState<any[]>([]);
 
   const isCurrent = (id: string) => {
-    console.log(router.query.presentationId, id);
     return router.query.presentationId === id;
   }
 
