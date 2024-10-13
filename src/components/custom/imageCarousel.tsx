@@ -13,10 +13,10 @@ import {
 export default function ImageCarousel({ items }: { items: CarouselItemType[] }) {
   return (
     <div className="flex w-full items-center justify-center">
-    <Carousel className="w-[500px] h-[500px]">
+    <Carousel className="w-[500px] h-[600px]">
       <CarouselContent>
         {items.map((item) => (
-          <CarouselItem key={item.slideNumber} className="w-[500px] h-[500px]">
+          <CarouselItem key={item.slideNumber} className="w-[500px] h-[600px]">
             <div className="p-1">
               <Card>
                 <CardContent className="flex aspect-square items-center justify-center p-6">
@@ -27,7 +27,7 @@ export default function ImageCarousel({ items }: { items: CarouselItemType[] }) 
                       className="w-[300px] h-[300px] self-center"
                     />
                     <audio controls src={item.audio} className="self-center"/>
-                    <p className="text-center mt-2">{item.content}</p>
+                    <p className="text-center mt-2 text-justify">{item.content}</p>
                   </div>
                 </CardContent>
               </Card>

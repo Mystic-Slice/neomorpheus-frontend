@@ -6,6 +6,8 @@ import ContentDisplay from '~/components/custom/contentDisplay'
 import { UserContext } from '~/contexts/UserProvider';
 import { CarouselItemType } from '~/types';
 import Sidebar from '~/components/custom/sidebar';
+import ChatBox from '~/components/custom/chatbox';
+import QuizComponent from '~/components/custom/quiz';
 
 export default function ContentPage() {
     const router = useRouter();
@@ -73,13 +75,17 @@ export default function ContentPage() {
     }, [presentationId]);
 
     return (
-        <div className="flex h-screen bg-gray-100">
-            <Sidebar/>
+        <div className="flex bg-gray-100">
+            <div className='fixed top-0 left-0'>
+                <Sidebar/>
+            </div>
             {
-                loading ? <div className='flex justify-center items-center w-full h-screen'><ClipLoader size={150}/></div>
-                : <div className="container mx-auto px-4 py-8">
+                loading ? <div className='ml-64 flex justify-center items-center w-full h-screen'><ClipLoader size={150}/></div>
+                : <div className="ml-64 container mx-auto px-4 py-8 justify-center">
                     <h1 className="text-3xl font-bold mb-6 self-center">{title}</h1>
                     <ContentDisplay content={{type: "carousel", items: content}} />
+                    <ChatBox presentationId={presentationId}/>
+                    <QuizComponent presentationId={presentationId}/>
                 </div>
             }
         </div>
