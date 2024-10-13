@@ -37,13 +37,14 @@ export default function AuthPage() {
 
         if (!response.success) {
             console.error(response.message);
+            alert(response.message);
             return;
         }
 
-        login(response.user as User);
+        console.log("here")
+        console.log(response)
 
-        console.log("Sign in data:", { email, password });
-        router.push("/");
+        login(response.user as User);
     };
 
     const handleSignUp = async (e: React.FormEvent) => {
@@ -53,18 +54,18 @@ export default function AuthPage() {
         const email = form.signupEmail.value;
         const password = form.signupPassword.value;
         const age = form.age.value;
+        const language = form.language.value;
+        const isCybersecurityProfessional = form.isCybersecurityProfessional.checked;
 
-        const response = await apiReq("signup", { username, email, password, age });
+        const response = await apiReq("signup", { username, email, password, age, language, isCybersecurityProfessional });
 
         if (!response.success) {
             console.error(response.message);
+            alert(response.message);
             return;
         }
 
         login(response.user as User);
-
-        console.log("Sign up data:", { username, email, password, age });
-        router.push("/");
     };
 
     return (
@@ -135,6 +136,12 @@ export default function AuthPage() {
                     <div className="space-y-2">
                     <Label htmlFor="age">Age</Label>
                     <Input id="age" type="number" placeholder="18" required />
+                    <Label htmlFor="language">Language</Label>
+                    <Input id="language" type="text" placeholder="en" required />
+                    <div className="flex flex-row">
+                        <Label className="flex-1" htmlFor="isCybersecurityProfessional">Are you a cybersecurity professional?</Label>
+                        <Input id="isCybersecurityProfessional" type="checkbox" size={5} />
+                    </div>
                     </div>
                     <Button type="submit" className="w-full">
                     Sign Up
@@ -147,3 +154,5 @@ export default function AuthPage() {
         </div>
     );
 }
+
+AuthPage.noSidebar = true;

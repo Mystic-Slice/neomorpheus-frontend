@@ -10,9 +10,11 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 
     const { email, password } = req.body
 
-    if(process.env.MOCK) {
+    if(process.env.MOCK === "true") {
+        console.log(process.env.MOCK)
+        console.log("here")
         // Mock response
-        if(email === "123@gmail.com" && password === "123") {
+        if(email === "123" && password === "123") {
             res.status(200).json({ 
                 success: true, 
                 message: "Login successful",
@@ -22,7 +24,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
                     age: 25,
                 }
             })
-        } else if (email === "456@gmail.com" && password === "456") {
+        } else if (email === "456" && password === "456") {
             res.status(200).json({ 
                 success: true, 
                 message: "Login successful",
@@ -39,8 +41,18 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
     }
 
     // Request to server
-    const response = await fetch(`${process.env.SERVER_URL}/api/signin`, req.body)
-    const data = await response.json()
+    const response = await fetch(`${process.env.SERVER_URL}/api/login`, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({username: email, password})
+    })
 
-    res.status(response.status).json(data)
+    if(response.status === 200) {
+        const data = await response.json()
+        res.status(response.status).json({ success: true, user: { email } })
+        return
+    }
+    res.status(response.status).json({ success: false, message: "This shouldnt have happened. Ashwath f'ed up." })
 }

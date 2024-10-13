@@ -9,7 +9,7 @@ export const env = createEnv({
   server: {
     NODE_ENV: z.enum(["development", "test", "production"]),
     SERVER_URL: z.string(),
-    MOCK: z.number().optional().default(0),
+    MOCK: z.boolean().default(false),
   },
 
   /**

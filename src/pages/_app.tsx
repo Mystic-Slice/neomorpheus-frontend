@@ -1,14 +1,23 @@
 import { GeistSans } from "geist/font/sans";
-import { type AppType } from "next/app";
+import { AppProps, type AppType } from "next/app";
+import Layout from "~/components/custom/layout";
 import { UserProvider } from "~/contexts/UserProvider";
 
 import "~/styles/globals.css";
+type ComponentWithNoSidebar = {
+  noSidebar?: boolean;
+};
 
-const MyApp: AppType = ({ Component, pageProps }) => {
+function MyApp({ Component, pageProps }: AppProps & { Component: ComponentWithNoSidebar }) {
+// const MyApp: AppType = ({ Component, pageProps }) => {
+  const FinalLayout = Component.noSidebar ? ({ children }: { children: React.ReactNode }) => <>{children}</> : Layout;
+
   return (
     <div className={GeistSans.className}>
       <UserProvider>
-        <Component {...pageProps} />
+        <FinalLayout>
+          <Component {...pageProps} />
+        </FinalLayout>
       </UserProvider>
     </div>
   );

@@ -1,3 +1,4 @@
+import { get } from 'http';
 import { NextApiRequest, NextApiResponse } from 'next';
 const recommendations_young = [
     { 
@@ -40,7 +41,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 
     console.log("User:", user)
 
-    if(process.env.MOCK) {
+    if(process.env.MOCK === "true") {
         if(user.age < 30) {
             res.status(200).json({ success: true, data: recommendations_young })
         } else {
@@ -50,7 +51,15 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
     }
 
     // Actual implementation
-    const response = await fetch(`${process.env.SERVER_URL}/api/recomendations`, req.body)
+    const response = await fetch(
+        `${process.env.SERVER_URL}/api/recommended-prompts?username=${user.username}`,
+        {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+    )
     const data = await response.json()
 
     res.status(response.status).json(data)
