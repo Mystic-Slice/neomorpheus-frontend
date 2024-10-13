@@ -78,7 +78,7 @@ export default function ContentPage() {
             {
                 loading ? <div className='flex justify-center items-center w-full h-screen'><ClipLoader size={150}/></div>
                 : <div className="container mx-auto px-4 py-8">
-                    <h1 className="text-3xl font-bold mb-6">Content for: {title}</h1>
+                    <h1 className="text-3xl font-bold mb-6 self-center">{title}</h1>
                     <ContentDisplay content={{type: "carousel", items: content}} />
                 </div>
             }
