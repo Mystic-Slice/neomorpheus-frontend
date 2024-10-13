@@ -1,29 +1,35 @@
-# Create T3 App
+# NeoMorpheus: From Novice to Expert: Cybersecurity for All
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+An educational tool that helps users learn about cybersecurity concepts and practices. The tool is designed to be interactive and engaging, with a focus on gamification and storytelling. Users can learn about different cybersecurity topics through a series of challenges and quizzes. For more advanced users, deeper dives into subjects using research papers as the primary source of information are available. The tool is designed to be accessible to users of all levels, from novices to experts.
 
-## What's next? How do I make an app with this?
+Backend Repository: [NeoMorpheus-Backend](https://github.com/Adishar93/NeoMorpheus-Backend.git)
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+## Installation
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+1. Clone the repository:
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+    ```bash
+    git clone https://github.com/Mystic-Slice/neomorpheus-frontend.git
+    ```
 
-## Learn More
+2. Install dependencies:
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+    ```bash
+    npm install
+    ```
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+## Usage
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+Start the development server:
 
-## How do I deploy this?
+```bash
+npm run dev
+```
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+Open http://localhost:3000 in your browser to see the app.
+
+## Technology Stack
+1. Next.js
+2. Shadcn UI
+3. Tailwind CSS
+4. Lucide Icons
