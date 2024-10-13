@@ -6,18 +6,26 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "~/com
 import Sidebar from '~/components/custom/sidebar'
 import { useRouter } from 'next/router'
 import { UserContext } from '~/contexts/UserProvider'
-import Recommendations from './recommendations'
+import Recommendations from '../components/custom/recommendations'
 import { apiReq } from '~/utils'
 import { HomeButton } from '~/components/custom/homeButton'
 
 export default function Home() {
+  const {user} = useContext(UserContext);
   const router = useRouter();
   
   const [prompt, setPrompt] = useState('')
 
-  const handleSubmit = () => {
-    router.push(`/learn/${prompt}`);
-  }
+  const handleSubmit = async () => {
+    const res = await apiReq("genContent", { user, prompt });
+    if(!res.success) {
+      console.error(res.error);
+      alert('Failed to fetch content');
+      return;
+    }
+    console.log(res);
+    router.push(`/learn/${res.presentationId}`);
+}
 
   const handleKeyPress = useCallback((e: { key: string }) => {
     if (e.key === 'Enter') {
@@ -26,13 +34,12 @@ export default function Home() {
   }, [handleSubmit])
 
   return (
-    <div className="flex h-screen bg-gray-100 flex-col p-4">
-        {/* Chat Box */}
-        <div className="flex-1 p-4 mb-4 overflow-hidden flex flex-col justify-center">
-            {/* Insert a logo here from lucide react */}
+    <div className="flex flex-row h-screen bg-gray-100">
+        <Sidebar/>
+        <div className="flex flex-1 bg-gray-100 flex-col p-4 justify-center">
             <HomeButton/>
             <h1 className="text-2xl font-semibold mb-4">Welcome to the Morpheus' Grinning Cat: Your guide to cybersecurity</h1>
-            <div className="flex gap-2 mt-4 shadow-md bg-white p-4 rounded-lg">
+            <div className="flex gap-2 mt-4 mb-4 shadow-md bg-white p-4 rounded-lg">
               <Input
                 type="text"
                 placeholder="Ask a question..."
@@ -46,9 +53,8 @@ export default function Home() {
                 Send
               </Button>
             </div>
+            <Recommendations/>
         </div>
-
-        <Recommendations/>
     </div>
   )
 }

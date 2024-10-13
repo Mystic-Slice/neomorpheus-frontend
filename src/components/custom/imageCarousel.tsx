@@ -1,6 +1,7 @@
 import * as React from "react"
 import Image from 'next/image'
 import { Card, CardContent } from "~/components/ui/card"
+import { CarouselItemType } from "~/types"
 import {
   Carousel,
   CarouselContent,
@@ -9,29 +10,23 @@ import {
   CarouselPrevious,
 } from "~/components/ui/carousel"
 
-type CarouselItem = {
-  id: number
-  imageUrl: string
-  caption: string
-}
-
-export default function ImageCarousel({ items }: { items: CarouselItem[] }) {
+export default function ImageCarousel({ items }: { items: CarouselItemType[] }) {
   return (
-    <Carousel className="w-100">
+    <div className="flex w-full items-center justify-center">
+    <Carousel className="w-[500px] h-[500px] bg-red-500">
       <CarouselContent>
         {items.map((item) => (
-          <CarouselItem key={item.id}>
+          <CarouselItem key={item.slideNumber} className="w-[500px] h-[500px]">
             <div className="p-1">
               <Card>
                 <CardContent className="flex aspect-square items-center justify-center p-6">
-                  <div className="relative w-full">
-                    <Image
-                      src={item.imageUrl}
-                      alt={item.caption}
-                      fill
-                      className="object-cover rounded-lg"
+                  <div className="flex flex-col justify-center">
+                    <img
+                      src={item.images[0] || "/images/placeholder.png"}
+                      alt={item.content}
+                      className="w-[300px] h-[300px] self-center"
                     />
-                    <p className="text-center mt-2">{item.caption}</p>
+                    <p className="text-center mt-2">{item.content}</p>
                   </div>
                 </CardContent>
               </Card>
@@ -42,5 +37,6 @@ export default function ImageCarousel({ items }: { items: CarouselItem[] }) {
       <CarouselPrevious />
       <CarouselNext />
     </Carousel>
+    </div>
   )
 }

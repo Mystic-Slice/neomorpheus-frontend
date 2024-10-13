@@ -13,7 +13,7 @@ interface Recommendation {
     description: string;
 }
 
-const Recommendations: NextPage = () => {
+const Recommendations = () => {
     const {user} = useContext(UserContext);
     const router = useRouter();
 
@@ -36,7 +36,16 @@ const Recommendations: NextPage = () => {
         fetchRecommendations();
     }, []);
 
-
+    const handleSubmit = async (prompt: string) => {
+        const res = await apiReq("genContent", { user, prompt });
+        if(!res.success) {
+          console.error(res.error);
+          alert('Failed to fetch content');
+          return;
+        }
+        console.log(res);
+        router.push(`/learn/${res.presentationId}`);
+    }
 
     return <div style={{ height: '40vh' }}>
         <div className="bg-white rounded-lg shadow-md p-4 flex-shrink-0 items-center">
@@ -52,7 +61,7 @@ const Recommendations: NextPage = () => {
                         <ClipLoader size={50}/> 
                     </div> 
                 : recos.map((rec, index) => (
-                    <Card key={index} className="flex-1 flex flex-col" onClick={() => router.push(`/learn/${rec.title}`)}>
+                    <Card key={index} className="flex-1 flex flex-col" onClick={() => handleSubmit(rec.title)}>
                     <CardHeader className="p-4">
                         <CardTitle className="text-sm">{rec.title}</CardTitle>
                     </CardHeader>

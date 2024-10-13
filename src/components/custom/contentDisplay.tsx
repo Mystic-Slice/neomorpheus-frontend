@@ -1,16 +1,11 @@
 import React from 'react'
 import ImageCarousel from '~/components/custom/imageCarousel'
 import Article from '~/components/custom/article'
-
-type CarouselItem = {
-  id: number
-  imageUrl: string
-  caption: string
-}
+import { CarouselItemType } from '~/types'
 
 type CarouselContent = {
   type: 'carousel'
-  items: CarouselItem[]
+  items: CarouselItemType[]
 }
 
 type ArticleContent = {

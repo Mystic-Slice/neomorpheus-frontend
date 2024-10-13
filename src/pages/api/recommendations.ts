@@ -39,8 +39,6 @@ const recommendations_old = [
 export default async function (req: NextApiRequest, res: NextApiResponse) {
     const { user } = req.body;
 
-    console.log("User:", user)
-
     if(process.env.MOCK === "true") {
         if(user.age < 30) {
             res.status(200).json({ success: true, data: recommendations_young })

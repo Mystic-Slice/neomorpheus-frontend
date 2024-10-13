@@ -154,5 +154,3 @@ export default function AuthPage() {
         </div>
     );
 }
-
-AuthPage.noSidebar = true;

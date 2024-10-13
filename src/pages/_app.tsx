@@ -9,15 +9,12 @@ type ComponentWithNoSidebar = {
 };
 
 function MyApp({ Component, pageProps }: AppProps & { Component: ComponentWithNoSidebar }) {
-// const MyApp: AppType = ({ Component, pageProps }) => {
-  const FinalLayout = Component.noSidebar ? ({ children }: { children: React.ReactNode }) => <>{children}</> : Layout;
-
   return (
     <div className={GeistSans.className}>
       <UserProvider>
-        <FinalLayout>
+        <Layout>
           <Component {...pageProps} />
-        </FinalLayout>
+        </Layout>
       </UserProvider>
     </div>
   );
